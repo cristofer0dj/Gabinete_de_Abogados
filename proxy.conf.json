@@ -1,0 +1,11 @@
+{
+  "/api/*": {
+    "target": "http://localhost/backend/public",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}
