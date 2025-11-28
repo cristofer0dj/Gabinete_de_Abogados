@@ -1,1 +1,19 @@
-<p>asuntos works!</p>
+<app-menu [activo]="2"></app-menu>
+
+<div class="container">
+  <hr>
+  
+  @if(lista) {
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-success" (click)="mostrar()">Nuevo Asunto</button>
+    </div>
+    <hr>
+    <app-lista-asuntos></app-lista-asuntos>
+  } @else {
+    <div class="d-flex justify-content-start">
+      <button class="btn btn-primary" (click)="mostrar()">Regresar</button>
+    </div>
+    <hr>
+    <app-form-asunto (accionRealizada)="recargar()"></app-form-asunto>
+  }
+</div>

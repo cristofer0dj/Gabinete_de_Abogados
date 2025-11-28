@@ -18,9 +18,6 @@ export class ApiServiceTs {
 
   constructor(private http: HttpClient) { }
 
-
-
-
   // Clientes
   getClientes(): Observable<any> {
     return this.http.get(this.apiUrl + 'lista', this.httpOptions).pipe(res => res);
@@ -53,6 +50,8 @@ export class ApiServiceTs {
     // URL CORREGIDA - cambiar "elinimar" por "eliminar"
     return this.http.post(`${this.apiUrl}/eliminar_cliente`, { id: id });
   }
+
+  
 }
 
 

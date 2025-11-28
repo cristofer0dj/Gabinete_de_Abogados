@@ -8,6 +8,7 @@ import { ApiServiceTs } from '../../../service/api-service.ts.js';
   templateUrl: './lista-clientes.html',
   styleUrl: './lista-clientes.css',
 })
+
 export class ListaClientes implements OnInit {
   data: any[] = [];
   constructor(private ApiService: ApiServiceTs) { }

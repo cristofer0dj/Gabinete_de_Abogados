@@ -1,1 +1,43 @@
-<p>lista-asuntos works!</p>
+<!-- component/asuntos/lista-asuntos/lista-asuntos.component.html -->
+<div>
+  <h4>Lista de Asuntos/Casos</h4>
+  
+  @if(!data || data.length === 0) {
+    <div class="alert alert-info">
+      No hay asuntos registrados.
+    </div>
+  } @else {
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th>Expediente</th>
+          <th>Descripción</th>
+          <th>Estado</th>
+          <th>Fecha Inicio</th>
+          <th>Fecha Fin</th>
+          <th>Cliente</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(asunto of data; track asunto.id) {
+          <tr>
+            <td>{{ asunto.expediente }}</td>
+            <td>{{ asunto.descripcion }}</td>
+            <td>
+              <span class="badge" [ngClass]="{
+                'bg-warning': asunto.estado === 'en trámite',
+                'bg-success': asunto.estado === 'cerrado',
+                'bg-secondary': asunto.estado === 'archivado'
+              }">
+                {{ asunto.estado }}
+              </span>
+            </td>
+            <td>{{ asunto.fechainicio }}</td>
+            <td>{{ asunto.fechafin }}</td>
+            <td>{{ asunto.idcliente }}</td> <!-- Luego mostraremos nombre del cliente -->
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
