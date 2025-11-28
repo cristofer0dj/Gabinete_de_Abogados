@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ApiServiceTs } from '../../../service/api-service.ts.js';
+import { ApiServiceTs } from '../../../service/api-service';
 
 @Component({
   selector: 'app-lista-asuntos',
   imports: [CommonModule],
   templateUrl: './lista-asuntos.html',
-  styleUrl: './lista-asuntos.css',
+  styleUrls: ['./lista-asuntos.css'],
 })
 
 export class ListaAsuntos implements OnInit {
@@ -17,7 +17,7 @@ export class ListaAsuntos implements OnInit {
     this.cargar();
   }
   cargar() {
-    this.ApiService.getClientes().subscribe({
+    this.ApiService.getAsuntos().subscribe({
       next: (result) => {
         console.log('Datos recibidos:', result);
         this.data = result;

@@ -1,14 +1,14 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ApiServiceTs } from '../../../service/api-service.ts.js';
+import { ApiServiceTs } from '../../../service/api-service';
 
 @Component({
   selector: 'app-form-cliente',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './form-cliente.html',
-  styleUrl: './form-cliente.css',
+  styleUrls: ['./form-cliente.css'],
 })
 export class FormCliente {
   @Output() accionRealizada = new EventEmitter<any>();

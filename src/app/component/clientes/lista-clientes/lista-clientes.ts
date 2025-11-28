@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ApiServiceTs } from '../../../service/api-service.ts.js';
+import { ApiServiceTs } from '../../../service/api-service';
 
 @Component({
   selector: 'app-lista-clientes',
   imports: [CommonModule],
   templateUrl: './lista-clientes.html',
-  styleUrl: './lista-clientes.css',
+  styleUrls: ['./lista-clientes.css'],
 })
 
 export class ListaClientes implements OnInit {
