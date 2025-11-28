@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class ApiServiceTs {
   
   private apiUrl = 'http://localhost/backend/public/despacho/';
+  
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -16,6 +17,9 @@ export class ApiServiceTs {
   };
 
   constructor(private http: HttpClient) { }
+
+
+  
 
   // Clientes
   getClientes(): Observable<any> {
@@ -43,4 +47,13 @@ export class ApiServiceTs {
   vincularAbogadoAsunto(vinculo: any): Observable<any> {
     return this.http.post(this.apiUrl + 'casos_abogado', vinculo, this.httpOptions).pipe(res=>res);
   }
+
+    // Agregar método eliminarCliente
+  eliminarCliente(id: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/eliminar_cliente`, { id: id });
+  }
 }
+
+
+
+  

@@ -8,23 +8,40 @@ import { ApiServiceTs } from '../../../service/api-service.ts.js';
   templateUrl: './lista-clientes.html',
   styleUrl: './lista-clientes.css',
 })
+// component/clientes/lista-clientes/lista-clientes.component.ts
 export class ListaClientes implements OnInit {
-  data: any[] = [];
-  constructor(private ApiService: ApiServiceTs) { }
+  data: any = [];
+
+  constructor(private apiService: ApiServiceTs) {}
+
   ngOnInit(): void {
     this.cargar();
   }
+
   cargar() {
-    this.ApiService.getClientes().subscribe({
+    this.apiService.getClientes().subscribe({
       next: (result) => {
-        console.log('Datos recibidos:', result);
+        console.log(result);
         this.data = result;
       },
       error: (err) => {
-        console.error('Error al cargar clientes:', err);
-        this.data = [];
+        console.log(err);
       }
     });
   }
-}
 
+  // FUNCIÓN ELIMINAR - Según tu patrón
+  eliminar(id: number) {
+    if (confirm('¿Estás seguro de eliminar este cliente?')) {
+      this.apiService.eliminarCliente(id).subscribe({
+        next: (result) => {
+          console.log(result);
+          this.cargar(); // Recargar la lista después de eliminar
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+    }
+  }
+}
