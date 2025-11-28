@@ -25,16 +25,17 @@
             <td>{{ asunto.descripcion }}</td>
             <td>
               <span class="badge" [ngClass]="{
-                'bg-warning': asunto.estado === 'en trámite',
+                'bg-warning text-dark': asunto.estado === 'en trámite',
                 'bg-success': asunto.estado === 'cerrado',
-                'bg-secondary': asunto.estado === 'archivado'
+                'bg-secondary': asunto.estado === 'archivado',
+                'bg-info text-dark': !asunto.estado
               }">
-                {{ asunto.estado }}
+                {{ asunto.estado || 'Sin estado' }}
               </span>
             </td>
-            <td>{{ asunto.fechainicio }}</td>
-            <td>{{ asunto.fechafin }}</td>
-            <td>{{ asunto.idcliente }}</td> <!-- Luego mostraremos nombre del cliente -->
+            <td>{{ asunto.fecha_inicio || asunto.fechainicio || '-' }}</td>
+            <td>{{ asunto.fecha_fin || asunto.fechafin || '-' }}</td>
+            <td>{{ asunto.nombre_cliente || asunto.cliente || asunto.idcliente || '-' }}</td>
           </tr>
         }
       </tbody>
