@@ -10,14 +10,22 @@ table td {
   padding: 12px 8px;
 }
 
-.badge {
-  padding: 6px 12px;
-  font-size: 0.9em;
+.estado-texto {
+  color: #000;
   font-weight: 500;
+  font-size: 0.95em;
 }
 
-.text-dark {
-  color: #000 !important;
+.estado-tramite {
+  color: #ff9800;
+}
+
+.estado-cerrado {
+  color: #28a745;
+}
+
+.estado-archivado {
+  color: #6c757d;
 }
 
 .alert {

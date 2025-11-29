@@ -21,21 +21,24 @@
       <tbody>
         @for(asunto of data; track asunto.id) {
           <tr>
-            <td>{{ asunto.expediente }}</td>
-            <td>{{ asunto.descripcion }}</td>
+            <td>{{ asunto.expediente || asunto.Expediente || '-' }}</td>
+            <td>{{ asunto.descripcion || asunto.Descripcion || '-' }}</td>
             <td>
-              <span class="badge" [ngClass]="{
-                'bg-warning text-dark': asunto.estado === 'en trámite',
-                'bg-success': asunto.estado === 'cerrado',
-                'bg-secondary': asunto.estado === 'archivado',
-                'bg-info text-dark': !asunto.estado
-              }">
-                {{ asunto.estado || 'Sin estado' }}
-              </span>
+              @if(asunto.estado || asunto.Estado || asunto.status) {
+                <span class="estado-texto" [ngClass]="{
+                  'estado-tramite': (asunto.estado || asunto.Estado || asunto.status)?.toLowerCase?.() === 'en trámite',
+                  'estado-cerrado': (asunto.estado || asunto.Estado || asunto.status)?.toLowerCase?.() === 'cerrado',
+                  'estado-archivado': (asunto.estado || asunto.Estado || asunto.status)?.toLowerCase?.() === 'archivado'
+                }">
+                  {{ asunto.estado || asunto.Estado || asunto.status || '-' }}
+                </span>
+              } @else {
+                <span class="estado-texto">Sin estado</span>
+              }
             </td>
-            <td>{{ asunto.fecha_inicio || asunto.fechainicio || '-' }}</td>
-            <td>{{ asunto.fecha_fin || asunto.fechafin || '-' }}</td>
-            <td>{{ asunto.nombre_cliente || asunto.cliente || asunto.idcliente || '-' }}</td>
+            <td>{{ asunto.fecha_inicio || asunto.fechainicio || asunto.Fecha_Inicio || '-' }}</td>
+            <td>{{ asunto.fecha_fin || asunto.fechafin || asunto.Fecha_Fin || '-' }}</td>
+            <td>{{ asunto.nombre_cliente || asunto.cliente || asunto.Cliente || asunto.client || asunto.idcliente || '-' }}</td>
           </tr>
         }
       </tbody>

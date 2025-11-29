@@ -19,7 +19,11 @@ export class ListaAsuntos implements OnInit {
   cargar() {
     this.ApiService.getAsuntos().subscribe({
       next: (result) => {
-        console.log('Datos recibidos:', result);
+        console.log('Datos recibidos completos:', result);
+        if (result && result.length > 0) {
+          console.log('Estructura del primer asunto:', result[0]);
+          console.log('Propiedades disponibles:', Object.keys(result[0]));
+        }
         this.data = result;
       },
       error: (err) => {
