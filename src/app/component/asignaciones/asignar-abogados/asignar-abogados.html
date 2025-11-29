@@ -1,1 +1,55 @@
-<p>asignar-abogados works!</p>
+<div class="card shadow-sm">
+  <div class="card-header bg-primary text-white">
+    <h5 class="mb-0">Asignar Abogados a Casos</h5>
+  </div>
+  <div class="card-body">
+    <div class="alert" *ngIf="mensaje" [class.alert-success]="mensaje.includes('exitosamente')" 
+                        [class.alert-danger]="!mensaje.includes('exitosamente')">
+      {{ mensaje }}
+    </div>
+
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label fw-bold">Seleccionar Caso:</label>
+        <select class="form-select" [(ngModel)]="asuntoSeleccionado" [disabled]="loading">
+          <option value="0">-- Seleccione un caso --</option>
+          <option *ngFor="let asunto of asuntos" [value]="asunto.id">
+            {{ asunto.expediente }} - {{ asunto.descripcion }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label fw-bold">Seleccionar Abogado:</label>
+        <select class="form-select" [(ngModel)]="abogadoSeleccionado" [disabled]="loading">
+          <option value="0">-- Seleccione un abogado --</option>
+          <option *ngFor="let abogado of abogados" [value]="abogado.id">
+            {{ abogado.nombre }} {{ abogado.apellido }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label fw-bold">Rol en el caso:</label>
+        <select class="form-select" [(ngModel)]="rol" [disabled]="loading">
+          <option *ngFor="let rolOption of roles" [value]="rolOption">{{ rolOption }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label fw-bold">Fecha de Asignación:</label>
+        <input type="date" class="form-control" [(ngModel)]="fechaAsignacion" [disabled]="loading">
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <button class="btn btn-success btn-lg" (click)="asignarAbogado()" [disabled]="loading">
+        <span *ngIf="loading">
+          <span class="spinner-border spinner-border-sm me-2"></span>
+          Asignando...
+        </span>
+        <span *ngIf="!loading">Asignar Abogado al Caso</span>
+      </button>
+    </div>
+  </div>
+</div>
