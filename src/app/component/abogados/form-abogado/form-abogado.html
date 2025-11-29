@@ -1,5 +1,5 @@
 <div>
-  <h4>Nuevo Cliente</h4>
+  <h4>Nuevo Abogado</h4>
 
   <div *ngIf="mensaje" class="alert" [class.alert-success]="mensaje.includes('exitosamente')" [class.alert-danger]="!mensaje.includes('exitosamente')">
     {{ mensaje }}
@@ -43,7 +43,7 @@
         <span class="spinner-border spinner-border-sm me-2"></span>
         Guardando...
       </span>
-      <span *ngIf="!loading">Guardar Cliente</span>
+      <span *ngIf="!loading">Guardar Abogado</span>
     </button>
     
     <button type="button" class="btn btn-secondary" 
