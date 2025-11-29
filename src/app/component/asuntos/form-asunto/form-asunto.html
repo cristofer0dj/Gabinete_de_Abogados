@@ -1,13 +1,10 @@
-<!-- component/asuntos/form-asunto/form-asunto.component.html -->
 <div>
   <h4>Nuevo Asunto/Caso</h4>
 
-  @if(mensaje) {
-    <div class="alert" [class.alert-success]="mensaje.includes('exitosamente')" 
+  <div *ngIf="mensaje" class="alert" [class.alert-success]="mensaje.includes('exitosamente')" 
                       [class.alert-danger]="!mensaje.includes('exitosamente')">
-      {{ mensaje }}
-    </div>
-  }
+    {{ mensaje }}
+  </div>
 
   <div class="form-group row mb-3">
     <label class="col-sm-3 col-form-label">Expediente:</label>
@@ -29,9 +26,12 @@
     <label class="col-sm-3 col-form-label">Estado:</label>
     <div class="col-sm-9">
       <select class="form-control" [(ngModel)]="estado" [disabled]="loading">
-        <option value="en trámite">En trámite</option>
-        <option value="archivado">Archivado</option>
-        <option value="cerrado">Cerrado</option>
+        <option value="">Seleccione un estado</option>
+        <option value="En proceso">En proceso</option>
+        <option value="Abierto">Abierto</option>
+        <option value="Cerrado">Cerrado</option>
+        <option value="En investigación">En investigación</option>
+        <option value="En trámite">En trámite</option>
       </select>
     </div>
   </div>
@@ -41,11 +41,9 @@
     <div class="col-sm-9">
       <select class="form-control" [(ngModel)]="idcliente" [disabled]="loading">
         <option value="0">Seleccione un cliente</option>
-        @for(cliente of clientes; track cliente.id) {
-          <option [value]="cliente.id">
-            {{ cliente.nombre }} {{ cliente.apellido }} - {{ cliente.email }}
-          </option>
-        }
+        <option *ngFor="let cliente of clientes" [value]="cliente.id">
+          {{ cliente.nombre }} {{ cliente.apellido }} - {{ cliente.email }}
+        </option>
       </select>
     </div>
   </div>
@@ -67,12 +65,11 @@
 
   <div class="d-flex gap-2">
     <button class="btn btn-success" (click)="guardar()" [disabled]="loading">
-      @if(loading) {
+      <span *ngIf="loading">
         <span class="spinner-border spinner-border-sm me-2"></span>
         Guardando...
-      } @else {
-        Guardar Asunto
-      }
+      </span>
+      <span *ngIf="!loading">Guardar Asunto</span>
     </button>
     
     <button type="button" class="btn btn-secondary" 

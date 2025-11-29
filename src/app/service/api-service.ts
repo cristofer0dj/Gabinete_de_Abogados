@@ -31,6 +31,10 @@ export class ApiServiceTs {
     return this.http.get(this.apiUrl + 'abogados', this.httpOptions);
   }
 
+  crearAbogado(abogado: any): Observable<any> {
+    return this.http.post(this.apiUrl + 'nuevo_abogado', abogado, this.httpOptions);
+  }
+
   // Asuntos
   getAsuntos(): Observable<any> {
     return this.http.get(this.apiUrl + 'asuntos', this.httpOptions);

@@ -3,17 +3,18 @@
 <div class="container">
   <hr>
 
-  @if(lista) {
+  <div *ngIf="lista">
     <div class="d-flex justify-content-end">
       <button class="btn btn-success" (click)="mostrar()">Nuevo Cliente</button>
     </div>
     <hr>
     <app-lista-clientes></app-lista-clientes>
-  } @else {
+  </div>
+  <div *ngIf="!lista">
     <div class="d-flex justify-content-start">
       <button class="btn btn-primary" (click)="mostrar()">Regresar</button>
     </div>
     <hr>
     <app-form-cliente (accionRealizada)="recargar()"></app-form-cliente>
-  }
+  </div>
 </div>

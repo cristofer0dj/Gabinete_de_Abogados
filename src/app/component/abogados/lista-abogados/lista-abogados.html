@@ -1,1 +1,34 @@
-<p>lista-abogados works!</p>
+<div>
+  <h4>Lista de Abogados</h4>
+  
+  <div *ngIf="loading" class="alert alert-info">
+    Cargando abogados...
+  </div>
+
+  <div *ngIf="error" class="alert alert-warning">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!loading && (!data || data.length === 0)" class="alert alert-info">
+    No hay abogados registrados.
+  </div>
+
+  <table *ngIf="!loading && data && data.length > 0" class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Teléfono</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let abogado of data">
+        <td>{{ abogado.nombre }}</td>
+        <td>{{ abogado.apellido }}</td>
+        <td>{{ abogado.telefono }}</td>
+        <td>{{ abogado.email }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

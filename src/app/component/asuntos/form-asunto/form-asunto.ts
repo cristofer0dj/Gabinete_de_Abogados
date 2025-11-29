@@ -16,7 +16,7 @@ export class FormAsunto implements OnInit {
   // Variables del formulario
   expediente: string = '';
   descripcion: string = '';
-  estado: string = 'en trámite';
+  estado: string = 'En proceso';
   fechainicio: string = '';
   fechafin: string = '';
   idcliente: number = 0;
@@ -77,7 +77,7 @@ export class FormAsunto implements OnInit {
         // Limpiar formulario
         this.expediente = '';
         this.descripcion = '';
-        this.estado = 'en trámite';
+        this.estado = 'En proceso';
         this.fechainicio = new Date().toISOString().split('T')[0];
         this.fechafin = '';
         this.idcliente = 0;

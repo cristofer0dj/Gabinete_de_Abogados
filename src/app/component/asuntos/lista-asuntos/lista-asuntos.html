@@ -2,12 +2,10 @@
 <div>
   <h4>Lista de Asuntos/Casos</h4>
   
-  @if(!data || data.length === 0) {
-    <div class="alert alert-info">
-      No hay asuntos registrados.
-    </div>
-  } @else {
-    <table class="table table-hover table-striped">
+  <div *ngIf="!data || data.length === 0" class="alert alert-info">
+    No hay asuntos registrados.
+  </div>
+  <table *ngIf="data && data.length > 0" class="table table-hover table-striped">
       <thead>
         <tr>
           <th>Expediente</th>
@@ -19,29 +17,25 @@
         </tr>
       </thead>
       <tbody>
-        @for(asunto of data; track asunto.id) {
-          <tr>
+        <tr *ngFor="let asunto of data">
             <td>{{ asunto.expediente || asunto.Expediente || '-' }}</td>
             <td>{{ asunto.descripcion || asunto.Descripcion || '-' }}</td>
             <td>
-              @if(asunto.estado || asunto.Estado || asunto.status) {
+              <ng-container *ngIf="(asunto.estado || asunto.Estado || asunto.status) as estadoVal; else sinEstado">
                 <span class="estado-texto" [ngClass]="{
-                  'estado-tramite': (asunto.estado || asunto.Estado || asunto.status)?.toLowerCase?.() === 'en trámite',
-                  'estado-cerrado': (asunto.estado || asunto.Estado || asunto.status)?.toLowerCase?.() === 'cerrado',
-                  'estado-archivado': (asunto.estado || asunto.Estado || asunto.status)?.toLowerCase?.() === 'archivado'
+                  'estado-tramite': (estadoVal)?.toLowerCase() === 'en trámite',
+                  'estado-cerrado': (estadoVal)?.toLowerCase() === 'cerrado',
+                  'estado-archivado': (estadoVal)?.toLowerCase() === 'archivado'
                 }">
-                  {{ asunto.estado || asunto.Estado || asunto.status || '-' }}
+                  {{ estadoVal }}
                 </span>
-              } @else {
-                <span class="estado-texto">Sin estado</span>
-              }
+              </ng-container>
+              <ng-template #sinEstado><span class="estado-texto">Sin estado</span></ng-template>
             </td>
             <td>{{ asunto.fecha_inicio || asunto.fechainicio || asunto.Fecha_Inicio || '-' }}</td>
             <td>{{ asunto.fecha_fin || asunto.fechafin || asunto.Fecha_Fin || '-' }}</td>
             <td>{{ asunto.nombre_cliente || asunto.cliente || asunto.Cliente || asunto.client || asunto.idcliente || '-' }}</td>
           </tr>
-        }
       </tbody>
     </table>
-  }
 </div>
