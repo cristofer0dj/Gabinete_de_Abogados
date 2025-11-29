@@ -9,6 +9,7 @@ export const routes: Routes = [
     { path: 'clientes', component: Clientes },
     { path: 'asuntos', component: Asuntos },
     { path: 'abogados', component: Abogados },
+    
 
 ];
     

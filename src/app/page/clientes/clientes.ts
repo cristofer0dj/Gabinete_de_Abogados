@@ -9,7 +9,7 @@ import { FormCliente } from '../../component/clientes/form-cliente/form-cliente'
   standalone: true,
   imports: [CommonModule, Menu, ListaClientes, FormCliente],
   templateUrl: './clientes.html',
-  styleUrl: './clientes.css',
+  styleUrls: ['./clientes.css'],
 })
 export class Clientes {
   lista: boolean = true;

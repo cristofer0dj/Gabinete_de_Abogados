@@ -10,7 +10,7 @@ import { FormAsunto } from '../../component/asuntos/form-asunto/form-asunto';
   standalone: true,
   imports: [CommonModule, Menu, ListaAsuntos, FormAsunto],
   templateUrl: './asuntos.html',
-  styleUrl: './asuntos.css',
+  styleUrls: ['./asuntos.css'],
 })
 export class Asuntos {
   lista: boolean = true;
