@@ -47,4 +47,6 @@ export class ApiServiceTs {
   eliminarCliente(id: number): Observable<any> {
     return this.http.post(`${this.apiUrl}eliminar_cliente`, { id: id }, this.httpOptions);
   }
+
+  
 }

@@ -1,1 +1,83 @@
-<p>form-asunto works!</p>
+<!-- component/asuntos/form-asunto/form-asunto.component.html -->
+<div>
+  <h4>Nuevo Asunto/Caso</h4>
+
+  @if(mensaje) {
+    <div class="alert" [class.alert-success]="mensaje.includes('exitosamente')" 
+                      [class.alert-danger]="!mensaje.includes('exitosamente')">
+      {{ mensaje }}
+    </div>
+  }
+
+  <div class="form-group row mb-3">
+    <label class="col-sm-3 col-form-label">Expediente:</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" [(ngModel)]="expediente" 
+             placeholder="Ej: EXP-2024-001" [disabled]="loading">
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label class="col-sm-3 col-form-label">Descripción:</label>
+    <div class="col-sm-9">
+      <textarea class="form-control" [(ngModel)]="descripcion" 
+                rows="3" placeholder="Descripción del caso..." [disabled]="loading"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label class="col-sm-3 col-form-label">Estado:</label>
+    <div class="col-sm-9">
+      <select class="form-control" [(ngModel)]="estado" [disabled]="loading">
+        <option value="en trámite">En trámite</option>
+        <option value="archivado">Archivado</option>
+        <option value="cerrado">Cerrado</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label class="col-sm-3 col-form-label">Cliente:</label>
+    <div class="col-sm-9">
+      <select class="form-control" [(ngModel)]="idcliente" [disabled]="loading">
+        <option value="0">Seleccione un cliente</option>
+        @for(cliente of clientes; track cliente.id) {
+          <option [value]="cliente.id">
+            {{ cliente.nombre }} {{ cliente.apellido }} - {{ cliente.email }}
+          </option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label class="col-sm-3 col-form-label">Fecha Inicio:</label>
+    <div class="col-sm-9">
+      <input type="date" class="form-control" [(ngModel)]="fechainicio" [disabled]="loading">
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label class="col-sm-3 col-form-label">Fecha Fin:</label>
+    <div class="col-sm-9">
+      <input type="date" class="form-control" [(ngModel)]="fechafin" [disabled]="loading">
+      <small class="form-text text-muted">Opcional - solo para casos cerrados</small>
+    </div>
+  </div>
+
+  <div class="d-flex gap-2">
+    <button class="btn btn-success" (click)="guardar()" [disabled]="loading">
+      @if(loading) {
+        <span class="spinner-border spinner-border-sm me-2"></span>
+        Guardando...
+      } @else {
+        Guardar Asunto
+      }
+    </button>
+    
+    <button type="button" class="btn btn-secondary" 
+            (click)="accionRealizada.emit(1)" [disabled]="loading">
+      Cancelar
+    </button>
+  </div>
+</div>
