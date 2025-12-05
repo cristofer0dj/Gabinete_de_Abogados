@@ -28,4 +28,3 @@ export class ListaClientes implements OnInit {
     });
   }
 }
-

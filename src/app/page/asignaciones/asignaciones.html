@@ -10,6 +10,19 @@
     </div>
   </div>
 
-  <app-asignar-abogados></app-asignar-abogados>
+  <div *ngIf="lista">
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-success" (click)="mostrar()">Nueva Asignación</button>
+    </div>
+    <hr>
+    <app-lista-asignaciones></app-lista-asignaciones>
+  </div>
+  <div *ngIf="!lista">
+    <div class="d-flex justify-content-start">
+      <button class="btn btn-primary" (click)="mostrar()">Regresar</button>
+    </div>
+    <hr>
+    <app-asignar-abogados (accionRealizada)="recargar()"></app-asignar-abogados>
+  </div>
 
 </div>

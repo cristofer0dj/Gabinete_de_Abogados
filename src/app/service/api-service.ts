@@ -26,6 +26,10 @@ export class ApiServiceTs {
     return this.http.post(this.apiUrl + 'nuevo_cliente', cliente, this.httpOptions);
   }
 
+  eliminarCliente(id: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}eliminar_cliente`, { id: id }, this.httpOptions);
+  }
+
   // Abogados
   getAbogados(): Observable<any> {
     return this.http.get(this.apiUrl + 'abogados', this.httpOptions);
@@ -33,6 +37,10 @@ export class ApiServiceTs {
 
   crearAbogado(abogado: any): Observable<any> {
     return this.http.post(this.apiUrl + 'nuevo_abogado', abogado, this.httpOptions);
+  }
+
+  eliminarAbogado(id: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}eliminar_abogado`, { id: id }, this.httpOptions);
   }
 
   // Asuntos
@@ -44,13 +52,17 @@ export class ApiServiceTs {
     return this.http.post(this.apiUrl + 'nuevo_asunto', asunto, this.httpOptions);
   }
 
+  eliminarAsunto(id: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}eliminar_asunto`, { id: id }, this.httpOptions);
+  }
+
+  // Asignaciones
   vincularAbogadoAsunto(vinculo: any): Observable<any> {
     return this.http.post(this.apiUrl + 'casos_abogado', vinculo, this.httpOptions);
   }
-  
-  eliminarCliente(id: number): Observable<any> {
-    return this.http.post(`${this.apiUrl}eliminar_cliente`, { id: id }, this.httpOptions);
-  }
 
-  
+  eliminarAsignacion(idasunto: number, idabogado: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}eliminar_asignacion`, { idasunto, idabogado }, this.httpOptions);
+  }
 }
+

@@ -1,5 +1,5 @@
 // component/asignaciones/asignar-abogados/asignar-abogados.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiServiceTs } from '../../../service/api-service';
@@ -12,6 +12,8 @@ import { ApiServiceTs } from '../../../service/api-service';
   styleUrls: ['./asignar-abogados.css']
 })
 export class AsignarAbogadosComponent implements OnInit {
+  @Output() accionRealizada = new EventEmitter<any>();
+
   asuntos: any[] = [];
   abogados: any[] = [];
   asuntoSeleccionado: number = 0;
@@ -94,9 +96,11 @@ export class AsignarAbogadosComponent implements OnInit {
             this.rol = 'Abogado Principal';
             this.fechaAsignacion = new Date().toISOString().split('T')[0];
             this.mensaje = '';
+            this.accionRealizada.emit(1);
           }, 2000);
         } else {
           this.mensaje = result?.message || 'Asignación completada';
+          setTimeout(() => this.accionRealizada.emit(1), 1000);
         }
       },
       error: (err) => {

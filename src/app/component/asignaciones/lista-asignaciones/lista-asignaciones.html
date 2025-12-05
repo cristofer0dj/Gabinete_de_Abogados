@@ -1,0 +1,48 @@
+<div>
+  <h4>Lista de Asignaciones de Abogados a Casos</h4>
+  
+  <div *ngIf="loading" class="alert alert-info">
+    Cargando asignaciones...
+  </div>
+
+  <div *ngIf="error" class="alert alert-warning">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!loading && (!asuntos || asuntos.length === 0)" class="alert alert-info">
+    No hay asuntos con asignaciones registrados.
+  </div>
+
+  <div *ngIf="!loading && asuntos && asuntos.length > 0">
+    <div *ngFor="let asunto of asuntos" class="card mb-3">
+      <div class="card-header bg-light">
+        <h5 class="mb-0">{{ asunto.expediente }} - {{ asunto.descripcion }}</h5>
+        <small class="text-muted">Estado: {{ asunto.estado }}</small>
+      </div>
+      <div class="card-body">
+        <div *ngIf="!asunto.abogados || asunto.abogados.length === 0" class="alert alert-warning">
+          Sin abogados asignados
+        </div>
+        <table *ngIf="asunto.abogados && asunto.abogados.length > 0" class="table table-sm table-hover">
+          <thead class="table-light">
+            <tr>
+              <th>Abogado</th>
+              <th>Rol</th>
+              <th>Fecha de Asignación</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let abogado of asunto.abogados">
+              <td><strong>{{ abogado.nombre }} {{ abogado.apellido }}</strong></td>
+              <td>{{ abogado.rol }}</td>
+              <td>{{ abogado.fecha_asignacion }}</td>
+              <td>{{ abogado.email }}</td>
+              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

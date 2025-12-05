@@ -52,10 +52,14 @@ export class ListaAsuntos implements OnInit {
       error: (err) => {
         console.error('Error al cargar asuntos o clientes:', err);
         this.data = [];
+
       }
     });
   }
+
+
 }
+
 
 
 
