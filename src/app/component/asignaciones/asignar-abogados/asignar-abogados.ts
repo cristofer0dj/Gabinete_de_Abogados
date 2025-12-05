@@ -74,27 +74,47 @@ export class AsignarAbogadosComponent implements OnInit {
       idasunto: this.asuntoSeleccionado,
       idabogado: this.abogadoSeleccionado,
       rol: this.rol,
-      fechaasignacion: this.fechaAsignacion
+      fechassignacion: this.fechaAsignacion
     };
 
     console.log('Asignando abogado:', datosVinculo);
 
     this.apiService.vincularAbogadoAsunto(datosVinculo).subscribe({
       next: (result) => {
-        console.log('Abogado asignado:', result);
-        this.mensaje = ' Abogado asignado exitosamente al caso!';
+        console.log('Respuesta del servidor:', result);
         this.loading = false;
-
-        // Limpiar formulario
-        this.asuntoSeleccionado = 0;
-        this.abogadoSeleccionado = 0;
-        this.rol = 'Abogado Principal';
-        this.fechaAsignacion = new Date().toISOString().split('T')[0];
+        
+        if (result && (result.success || result.status === 201)) {
+          this.mensaje = '✓ ¡Abogado asignado exitosamente al caso!';
+          
+          // Limpiar formulario después de 2 segundos
+          setTimeout(() => {
+            this.asuntoSeleccionado = 0;
+            this.abogadoSeleccionado = 0;
+            this.rol = 'Abogado Principal';
+            this.fechaAsignacion = new Date().toISOString().split('T')[0];
+            this.mensaje = '';
+          }, 2000);
+        } else {
+          this.mensaje = result?.message || 'Asignación completada';
+        }
       },
       error: (err) => {
+        console.error('Error completo:', err);
         console.log('Error al asignar abogado:', err);
-        this.mensaje = 'Error al asignar el abogado al caso';
         this.loading = false;
+        
+        // Intentar parsear el error
+        if (err.error) {
+          try {
+            const errorResponse = typeof err.error === 'string' ? JSON.parse(err.error) : err.error;
+            this.mensaje = `Error: ${errorResponse.error || errorResponse.message || 'Error desconocido'}`;
+          } catch (e) {
+            this.mensaje = `Error al asignar el abogado: ${err.statusText || 'Error de conexión'}`;
+          }
+        } else {
+          this.mensaje = 'Error al asignar el abogado al caso';
+        }
       }
     });
   }
