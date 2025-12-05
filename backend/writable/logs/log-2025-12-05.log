@@ -1,0 +1,12 @@
+ERROR - 2025-12-05 16:40:54 --> Datos recibidos: {"idasunto":"2","idabogado":"2","rol":"Notario","fechassignacion":"2026-01-03"}
+ERROR - 2025-12-05 16:40:54 --> Datos después de procesar: {"idasunto":"2","idabogado":"2","rol":"Notario","fechassignacion":"2026-01-03"}
+ERROR - 2025-12-05 16:40:54 --> IDs después de buscar - Asunto: 2, Abogado: 2
+ERROR - 2025-12-05 17:00:31 --> Datos recibidos: {"idasunto":"2","idabogado":"1","rol":"Notario","fechassignacion":"2026-01-10"}
+ERROR - 2025-12-05 17:00:31 --> Datos después de procesar: {"idasunto":"2","idabogado":"1","rol":"Notario","fechassignacion":"2026-01-10"}
+ERROR - 2025-12-05 17:00:31 --> IDs después de buscar - Asunto: 2, Abogado: 1
+ERROR - 2025-12-05 17:01:27 --> Datos recibidos: {"idasunto":"1","idabogado":"2","rol":"Abogado Principal","fechassignacion":"2025-12-27"}
+ERROR - 2025-12-05 17:01:27 --> Datos después de procesar: {"idasunto":"1","idabogado":"2","rol":"Abogado Principal","fechassignacion":"2025-12-27"}
+ERROR - 2025-12-05 17:01:27 --> IDs después de buscar - Asunto: 1, Abogado: 2
+ERROR - 2025-12-05 17:02:50 --> Datos recibidos: {"idasunto":"3","idabogado":"3","rol":"Mediador","fechassignacion":"2025-12-05"}
+ERROR - 2025-12-05 17:02:50 --> Datos después de procesar: {"idasunto":"3","idabogado":"3","rol":"Mediador","fechassignacion":"2025-12-05"}
+ERROR - 2025-12-05 17:02:50 --> IDs después de buscar - Asunto: 3, Abogado: 3
